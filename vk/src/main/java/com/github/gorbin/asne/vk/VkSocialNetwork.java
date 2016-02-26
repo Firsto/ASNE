@@ -43,6 +43,7 @@ import com.github.gorbin.asne.core.listener.OnRequestGetFriendsCompleteListener;
 import com.github.gorbin.asne.core.listener.OnRequestRemoveFriendCompleteListener;
 import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
 import com.github.gorbin.asne.core.listener.OnRequestSocialPersonsCompleteListener;
+import com.github.gorbin.asne.core.listener.base.SocialNetworkListener;
 import com.github.gorbin.asne.core.persons.SocialPerson;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKAccessTokenTracker;
@@ -849,7 +850,8 @@ public class VkSocialNetwork extends SocialNetwork {
             }
             @Override
             public void onError(VKError error) {
-                mLocalListeners.get(REQUEST_LOGIN).onError(getID(), REQUEST_LOGIN, String.valueOf(error), null);
+                SocialNetworkListener listener = mLocalListeners.get(REQUEST_LOGIN);
+                if (listener != null) listener.onError(getID(), REQUEST_LOGIN, String.valueOf(error), null);
             }
         })) {
             super.onActivityResult(requestCode, resultCode, data);

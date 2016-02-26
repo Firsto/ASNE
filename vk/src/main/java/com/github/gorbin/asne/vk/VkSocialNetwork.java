@@ -21,14 +21,11 @@
  *******************************************************************************/
 package com.github.gorbin.asne.vk;
 
-import android.app.Application;
-import android.content.Context;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -51,8 +48,6 @@ import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKAccessTokenTracker;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
-//import com.vk.sdk.VKSdkListener;
-import com.vk.sdk.VKUIHelper;
 import com.vk.sdk.api.VKApi;
 import com.vk.sdk.api.VKApiConst;
 import com.vk.sdk.api.VKError;
@@ -66,7 +61,6 @@ import com.vk.sdk.api.model.VKPhotoArray;
 import com.vk.sdk.api.model.VKWallPostResult;
 import com.vk.sdk.api.photo.VKImageParameters;
 import com.vk.sdk.api.photo.VKUploadImage;
-import com.vk.sdk.dialogs.VKCaptchaDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,6 +70,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+
+//import com.vk.sdk.VKSdkListener;
 
 /**
  * Class for VK social network integration
@@ -853,7 +849,7 @@ public class VkSocialNetwork extends SocialNetwork {
             }
             @Override
             public void onError(VKError error) {
-                mLocalListeners.get(REQUEST_LOGIN).onError(getID(), REQUEST_LOGIN, error.toString(), null);
+                mLocalListeners.get(REQUEST_LOGIN).onError(getID(), REQUEST_LOGIN, String.valueOf(error), null);
             }
         })) {
             super.onActivityResult(requestCode, resultCode, data);

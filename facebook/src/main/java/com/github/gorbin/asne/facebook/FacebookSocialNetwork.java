@@ -460,6 +460,7 @@ public class FacebookSocialNetwork extends SocialNetwork {
         super.requestPostDialog(bundle, onPostingCompleteListener);
         Uri link = null;
         Uri pictureLink = null;
+        requestID = REQUEST_POST_DIALOG;
         if (ShareDialog.canShow(ShareLinkContent.class)) {
             if (bundle.getString(BUNDLE_LINK) != null) {
                 link = Uri.parse(bundle.getString(BUNDLE_LINK));

@@ -84,9 +84,15 @@ afterEvaluate { project ->
         from android.sourceSets.main.java.sourceFiles
     }
 
+    task sourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier = 'sources'
+    }
+
     artifacts {
         //archives packageReleaseJar
         archives androidSourcesJar
         archives androidJavadocsJar
+        archives sourcesJar
     }
 }
